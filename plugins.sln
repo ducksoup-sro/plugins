@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientlessLogin", "ClientlessLogin\ClientlessLogin.csproj", "{34AE3F7B-4EC4-4A36-A655-5FE0E00C221C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceCaptcha", "ReplaceCaptcha\ReplaceCaptcha.csproj", "{28FB5794-B436-4D39-9C3F-E32B55931853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseCommands", "DatabaseCommands\DatabaseCommands.csproj", "{62E112BA-035E-4F27-812E-6BC6C98C1477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoNotice", "AutoNotice\AutoNotice.csproj", "{D172057B-CF89-4D25-A23F-3C05A34C7C09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34AE3F7B-4EC4-4A36-A655-5FE0E00C221C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34AE3F7B-4EC4-4A36-A655-5FE0E00C221C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34AE3F7B-4EC4-4A36-A655-5FE0E00C221C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34AE3F7B-4EC4-4A36-A655-5FE0E00C221C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FB5794-B436-4D39-9C3F-E32B55931853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FB5794-B436-4D39-9C3F-E32B55931853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FB5794-B436-4D39-9C3F-E32B55931853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FB5794-B436-4D39-9C3F-E32B55931853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E112BA-035E-4F27-812E-6BC6C98C1477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E112BA-035E-4F27-812E-6BC6C98C1477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E112BA-035E-4F27-812E-6BC6C98C1477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E112BA-035E-4F27-812E-6BC6C98C1477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D172057B-CF89-4D25-A23F-3C05A34C7C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D172057B-CF89-4D25-A23F-3C05A34C7C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D172057B-CF89-4D25-A23F-3C05A34C7C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D172057B-CF89-4D25-A23F-3C05A34C7C09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
