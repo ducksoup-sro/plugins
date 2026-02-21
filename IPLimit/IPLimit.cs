@@ -30,7 +30,7 @@ public class IPLimit : IPlugin
         _serverManager.RegisterModuleHandler<SERVER_GATEWAY_LOGIN_RESPONSE>(ServerType, SERVER_GATEWAY_LOGIN_RESPONSE_HANDLE);
     }
 
-    public void OnServerStart(IAsyncServer server)
+    public void OnServerStart(IFakeServer server)
     {
     }
 

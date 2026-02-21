@@ -24,7 +24,7 @@ public class ClientlessLogin : IPlugin
         _clientManager = new ClientManager(_serverManager);
     }
 
-    public void OnServerStart(IAsyncServer server)
+    public void OnServerStart(IFakeServer server)
     {
     }
 
