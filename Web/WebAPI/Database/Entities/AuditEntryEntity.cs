@@ -1,4 +1,4 @@
-namespace WebApiPlugin.Database.Entities;
+namespace WebAPI.Database.Entities;
 
 public class AuditEntryEntity
 {

@@ -1,13 +1,10 @@
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using API.EventFactory;
 using PacketLibrary.Handler;
 using SilkroadSecurityAPI.Message;
-using WebApiPlugin.Dto;
+using WebAPI.Dto;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 /// <summary>
 /// Stores the last N packets per session for the "read packets" API.

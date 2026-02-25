@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Database.Context;
 using API.Database.DuckSoup;
 using API.ServiceFactory;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using WatsonWebserver.Core;
-using WebApiPlugin;
-using WebApiPlugin.Dto;
+using WebAPI.Dto;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 public static class CorsRoutes
 {

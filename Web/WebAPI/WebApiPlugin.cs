@@ -1,16 +1,13 @@
-using System.Collections.Generic;
-using API;
 using API.Command;
 using API.Plugin;
 using API.Server;
 using API.ServiceFactory;
 using API.Webserver;
-using WatsonWebserver.Core;
-using WebApiPlugin.Database;
-using WebApiPlugin.Routes;
+using WebAPI.Database;
+using WebAPI.Routes;
 using HttpMethod = WatsonWebserver.Core.HttpMethod;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 public class WebApiPlugin : IPlugin
 {

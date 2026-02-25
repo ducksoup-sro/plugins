@@ -1,9 +1,7 @@
-using System;
-using System.Linq;
 using System.Text;
 using SilkroadSecurityAPI.Message;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 /// <summary>
 /// Builds a Packet from API request data format: "type:;:value;:;type2:;:value2"

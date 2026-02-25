@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace WebApiPlugin.Dto;
+namespace WebAPI.Dto;
 
 public class CorsOriginRequest
 {

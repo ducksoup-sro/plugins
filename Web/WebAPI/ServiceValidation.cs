@@ -1,11 +1,8 @@
-using System.Linq;
-using System.Threading.Tasks;
 using API.Database.Context;
-using API.Database.DuckSoup;
 using Microsoft.EntityFrameworkCore;
 using SilkroadSecurityAPI;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 public static class ServiceValidation
 {

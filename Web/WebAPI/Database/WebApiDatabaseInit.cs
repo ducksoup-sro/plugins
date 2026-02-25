@@ -5,7 +5,7 @@ using Database;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
-namespace WebApiPlugin.Database;
+namespace WebAPI.Database;
 
 public static class WebApiDatabaseInit
 {

@@ -1,13 +1,10 @@
-using System.Threading.Tasks;
-using API.Database.DuckSoup;
 using API.ServiceFactory;
 using API.Services;
 using Newtonsoft.Json;
 using Serilog;
 using WatsonWebserver.Core;
-using WebApiPlugin;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 public static class AuthRoutes
 {

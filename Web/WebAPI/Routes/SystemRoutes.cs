@@ -1,15 +1,11 @@
-using System;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 using API.ServiceFactory;
 using API.Settings;
 using Newtonsoft.Json;
 using WatsonWebserver.Core;
-using WebApiPlugin;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 public static class SystemRoutes
 {

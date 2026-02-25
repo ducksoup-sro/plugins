@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Database.Context;
 using API.Database.DuckSoup;
 using API.Server;
@@ -10,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SilkroadSecurityAPI;
 using WatsonWebserver.Core;
-using WebApiPlugin.Dto;
+using WebAPI.Dto;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 public static class ServiceRoutes
 {
