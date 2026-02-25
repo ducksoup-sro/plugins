@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPLimit", "IPLimit\IPLimit.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleWebPlugin", "ExampleWebPlugin\ExampleWebPlugin.csproj", "{48CAAE29-953E-4466-9FFB-0F6BE5C39BDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "Web\WebAPI\WebAPI.csproj", "{C4118DB1-724B-47C1-B593-226049BFAE90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,10 @@ Global
 		{48CAAE29-953E-4466-9FFB-0F6BE5C39BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48CAAE29-953E-4466-9FFB-0F6BE5C39BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48CAAE29-953E-4466-9FFB-0F6BE5C39BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4118DB1-724B-47C1-B593-226049BFAE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4118DB1-724B-47C1-B593-226049BFAE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4118DB1-724B-47C1-B593-226049BFAE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4118DB1-724B-47C1-B593-226049BFAE90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4118DB1-724B-47C1-B593-226049BFAE90}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
