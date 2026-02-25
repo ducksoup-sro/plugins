@@ -1,12 +1,10 @@
 using System.Web;
-using System.Threading.Tasks;
 using API.Logging;
 using API.ServiceFactory;
 using Newtonsoft.Json;
 using WatsonWebserver.Core;
-using WebApiPlugin;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 public static class LogRoutes
 {

@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace WebApiPlugin.Dto;
+namespace WebAPI.Dto;
 
 public class ServiceDto
 {

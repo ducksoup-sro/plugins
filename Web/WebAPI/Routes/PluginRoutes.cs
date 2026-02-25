@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using API.Plugin;
 using API.ServiceFactory;
 using Newtonsoft.Json;
 using WatsonWebserver.Core;
-using WebApiPlugin;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 /// <summary>
 /// Plugin list, load, unload (exposed by WebApiPlugin under /api/v1/plugins/).

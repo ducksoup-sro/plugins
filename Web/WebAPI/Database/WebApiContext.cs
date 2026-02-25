@@ -1,8 +1,8 @@
 using Database;
 using Microsoft.EntityFrameworkCore;
-using WebApiPlugin.Database.Entities;
+using WebAPI.Database.Entities;
 
-namespace WebApiPlugin.Database;
+namespace WebAPI.Database;
 
 /// <summary>
 /// EF context for WebApi plugin: AuditLog only (same DB as DuckSoup/ProxyDb).

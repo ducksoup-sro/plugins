@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
-using WebApiPlugin.Database;
-using WebApiPlugin.Database.Entities;
+using WebAPI.Database;
+using WebAPI.Database.Entities;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 public static class AuditLog
 {

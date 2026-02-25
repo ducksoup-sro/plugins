@@ -1,12 +1,9 @@
-using System.Linq;
-using System.Threading.Tasks;
 using API.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using WatsonWebserver.Core;
-using WebApiPlugin;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 public static class SettingsRoutes
 {

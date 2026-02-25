@@ -1,22 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API;
-using API.EventFactory;
 using API.ServiceFactory;
 using API.Session;
-using ServerType = API.ServerType;
 using Newtonsoft.Json;
 using PacketLibrary.Handler;
-using PacketLibrary.VSRO188.Agent.Enums.Chat;
-using PacketLibrary.VSRO188.Agent.Server;
 using Serilog;
-using SilkroadSecurityAPI.Message;
 using WatsonWebserver.Core;
-using WebApiPlugin.Dto;
+using WebAPI.Dto;
+using ServerType = API.ServerType;
 
-namespace WebApiPlugin.Routes;
+namespace WebAPI.Routes;
 
 public static class SessionRoutes
 {

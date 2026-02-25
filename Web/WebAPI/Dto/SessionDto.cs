@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace WebApiPlugin.Dto;
+namespace WebAPI.Dto;
 
 public class SessionDto
 {

@@ -2,7 +2,7 @@ using API.Database.DuckSoup;
 using API.Enums;
 using WatsonWebserver.Core;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 public static class WebApiHelpers
 {

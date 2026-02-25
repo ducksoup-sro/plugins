@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
-using System.Threading;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 /// <summary>
 /// Collects CPU (total + per-core) and memory metrics for the system and current process (proxy).

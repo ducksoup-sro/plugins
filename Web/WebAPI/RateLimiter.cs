@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Concurrent;
 
-namespace WebApiPlugin;
+namespace WebAPI;
 
 public static class RateLimiter
 {
