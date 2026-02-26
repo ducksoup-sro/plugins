@@ -64,6 +64,6 @@ public class IPLimit : IPlugin
 
     public string Name => "IPLimit";
     public string Version => "1.0.0";
-    public string Author => "b0ykoe";
+    public string Author => "DuckSoup";
     public ServerType ServerType => ServerType.GatewayServer;
 }

@@ -42,6 +42,6 @@ public class ClientlessLogin : IPlugin
 
     public string Name => "ClientlessLogin";
     public string Version => "1.0.0";
-    public string Author => "b0ykoe";
+    public string Author => "DuckSoup";
     public ServerType ServerType => ServerType.None;
 }

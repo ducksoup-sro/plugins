@@ -14,7 +14,7 @@ public class ExampleWebPlugin : IPlugin
 
     public string Name => "ExampleWebPlugin";
     public string Version => "1.0.0";
-    public string Author => "b0ykoe";
+    public string Author => "DuckSoup";
     public ServerType ServerType => ServerType.None;
 
     private readonly List<IWebserverPluginRoute> routes = new List<IWebserverPluginRoute>
