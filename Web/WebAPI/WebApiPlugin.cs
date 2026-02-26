@@ -64,12 +64,14 @@ public class WebApiPlugin : IPlugin
         // Audit
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/audit", AuditRoutes.GetAudit);
 
-        // Events (list, load, unload, get/set state)
+        // Events (list, load, unload, get/set state, crons)
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/events", EventRoutes.ListEvents);
         _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/events/load", EventRoutes.LoadEvent);
         _webserverManager.addParameterRoute(HttpMethod.POST, "/api/v1/web/events/{name}/unload", EventRoutes.UnloadEvent);
         _webserverManager.addParameterRoute(HttpMethod.GET, "/api/v1/web/events/{name}/state", EventRoutes.GetEventState);
         _webserverManager.addParameterRoute(HttpMethod.PATCH, "/api/v1/web/events/{name}/state", EventRoutes.SetEventState);
+        _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/events/crons", EventRoutes.AddCron);
+        _webserverManager.addParameterRoute(HttpMethod.DELETE, "/api/v1/web/events/crons/{id}", EventRoutes.DeleteCron);
 
         // Dashboard summary
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/summary", SummaryRoutes.GetSummary);
@@ -117,6 +119,13 @@ public class WebApiPlugin : IPlugin
         {
             Title = "Web API",
             Path = "/api/v1/web",
+            ShowInMenu = true,
+            RequiredRole = API.Enums.UserRole.Authenticated
+        });
+        _routes.Add(new WebserverPluginRoute
+        {
+            Title = "Events",
+            Path = "/dashboard/events",
             ShowInMenu = true,
             RequiredRole = API.Enums.UserRole.Authenticated
         });
