@@ -330,6 +330,17 @@ public static class EventRoutes
                 return;
             }
 
+            try
+            {
+                CronExpression.ValidateExpression(crontime);
+            }
+            catch (Exception cronEx)
+            {
+                ctx.Response.StatusCode = 400;
+                await ctx.Response.Send(JsonConvert.SerializeObject(new { error = "Invalid cron expression: " + (cronEx.Message ?? "invalid format") }));
+                return;
+            }
+
             using (var context = new DuckSoup())
             {
                 context.Events.Add(new Event

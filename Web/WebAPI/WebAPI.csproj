@@ -10,7 +10,7 @@
     <ItemGroup>
       <PackageReference Include="DuckSoup.API" Version="2.3.2-RELEASE" />
       <PackageReference Include="DuckSoup.Database" Version="2.3.0-RELEASE" />
-      <PackageReference Include="Quartz" Version="3.8.1" />
+      <PackageReference Include="Quartz" Version="3.14.0" />
       <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="10.0.3" />
     </ItemGroup>
 
