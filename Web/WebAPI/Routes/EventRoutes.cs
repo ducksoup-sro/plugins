@@ -302,6 +302,7 @@ public static class EventRoutes
             }
 
             evt.SetEventState(stateEnum.Value);
+            AuditLog.Log("Event.SetState", $"name={evt.Name} state={stateEnum.Value}", WebApiHelpers.GetUsername(ctx));
             ctx.Response.StatusCode = 200;
             await ctx.Response.Send(JsonConvert.SerializeObject(new { status = "ok", name = evt.Name, state = stateEnum.Value.ToString() }));
         }
@@ -358,6 +359,8 @@ public static class EventRoutes
                 eventManager.ReloadEvent(eventname);
             }
 
+            var detail = string.IsNullOrEmpty(req?.comment) ? $"event={eventname} crontime={crontime}" : $"event={eventname} crontime={crontime} comment={req?.comment?.Trim()}";
+            AuditLog.Log("Event.CronAdd", detail, WebApiHelpers.GetUsername(ctx));
             ctx.Response.StatusCode = 200;
             await ctx.Response.Send(JsonConvert.SerializeObject(new { status = "ok", eventname, crontime }));
         }
@@ -384,6 +387,7 @@ public static class EventRoutes
             }
 
             string? eventname = null;
+            string? crontime = null;
             using (var context = new DuckSoup())
             {
                 var row = await context.Events.FindAsync(eventId);
@@ -394,6 +398,7 @@ public static class EventRoutes
                     return;
                 }
                 eventname = row.Eventname;
+                crontime = row.Crontime;
                 context.Events.Remove(row);
                 await context.SaveChangesAsync();
             }
@@ -404,6 +409,7 @@ public static class EventRoutes
                 eventManager.ReloadEvent(eventname);
             }
 
+            AuditLog.Log("Event.CronDelete", $"event={eventname} id={eventId} crontime={crontime}", WebApiHelpers.GetUsername(ctx));
             ctx.Response.StatusCode = 200;
             await ctx.Response.Send(JsonConvert.SerializeObject(new { status = "ok", eventId }));
         }
