@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleWebPlugin", "Example
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "Web\WebAPI\WebAPI.csproj", "{C4118DB1-724B-47C1-B593-226049BFAE90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleEvent", "ExampleEvent\ExampleEvent.csproj", "{D799AE66-F226-4268-A02F-6C51DFC6A59E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,5 +51,9 @@ Global
 		{C4118DB1-724B-47C1-B593-226049BFAE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4118DB1-724B-47C1-B593-226049BFAE90}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C4118DB1-724B-47C1-B593-226049BFAE90}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D799AE66-F226-4268-A02F-6C51DFC6A59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D799AE66-F226-4268-A02F-6C51DFC6A59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D799AE66-F226-4268-A02F-6C51DFC6A59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D799AE66-F226-4268-A02F-6C51DFC6A59E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
