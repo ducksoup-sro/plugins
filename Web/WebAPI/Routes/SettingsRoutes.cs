@@ -67,6 +67,17 @@ public static class SettingsRoutes
         }
     }
 
+    /// <summary>Reload settings (no-op for now; can be extended to clear caches). Triggers a single place for "reload" from dashboard.</summary>
+    public static async Task ReloadSettings(HttpContextBase ctx)
+    {
+        ctx.Response.ContentType = "application/json";
+        if (!WebApiHelpers.TryRateLimit(ctx)) { await ctx.Response.Send("{\"error\":\"Too many requests\"}"); return; }
+        if (!WebApiHelpers.RequireAdmin(ctx)) { ctx.Response.StatusCode = 403; await ctx.Response.Send("{\"error\":\"Admin role required\"}"); return; }
+        AuditLog.Log("Settings.Reload", "", WebApiHelpers.GetUsername(ctx));
+        ctx.Response.StatusCode = 200;
+        await ctx.Response.Send(JsonConvert.SerializeObject(new { status = "ok" }));
+    }
+
     /// <summary>Read-only proxy/webserver-related settings from GlobalSettings.</summary>
     public static async Task GetProxySettings(HttpContextBase ctx)
     {
@@ -107,4 +118,5 @@ public static class SettingsRoutes
         public string key { get; set; } = "";
         public string value { get; set; } = "";
     }
+
 }

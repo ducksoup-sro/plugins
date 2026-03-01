@@ -12,7 +12,6 @@ namespace WebAPI;
 public class WebApiPlugin : IPlugin
 {
     private IWebserverManager? _webserverManager;
-    private readonly List<IWebserverPluginRoute> _routes = new();
 
     public string Name => "WebApi";
     public string Version => "1.0.0";
@@ -29,7 +28,6 @@ public class WebApiPlugin : IPlugin
 
         RegisterRoutes();
         RegisterProtectedPrefix();
-        RegisterPluginMenu();
     }
 
     public void OnServerStart(IFakeServer server) { }
@@ -64,12 +62,14 @@ public class WebApiPlugin : IPlugin
         // Audit
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/audit", AuditRoutes.GetAudit);
 
-        // Events (list, load, unload, get/set state, crons)
+        // Events (list, load, unload, get/set state, crons, with-routes for sidebar)
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/events", EventRoutes.ListEvents);
+        _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/events/with-routes", EventRoutes.GetEventsWithRoutes);
         _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/events/load", EventRoutes.LoadEvent);
         _webserverManager.addParameterRoute(HttpMethod.POST, "/api/v1/web/events/{name}/unload", EventRoutes.UnloadEvent);
         _webserverManager.addParameterRoute(HttpMethod.GET, "/api/v1/web/events/{name}/state", EventRoutes.GetEventState);
         _webserverManager.addParameterRoute(HttpMethod.PATCH, "/api/v1/web/events/{name}/state", EventRoutes.SetEventState);
+        // Event/plugin-specific routes (settings, data) are registered by the plugins/events themselves
         _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/events/crons", EventRoutes.AddCron);
         _webserverManager.addParameterRoute(HttpMethod.DELETE, "/api/v1/web/events/crons/{id}", EventRoutes.DeleteCron);
 
@@ -89,18 +89,25 @@ public class WebApiPlugin : IPlugin
         _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/cors/origins", CorsRoutes.AddOrigin);
         _webserverManager.addStaticRoute(HttpMethod.DELETE, "/api/v1/web/cors/origins", CorsRoutes.RemoveOrigin);
 
-        // Settings (global + proxy read-only)
+        // Settings (global + proxy read-only, reload)
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/settings/global", SettingsRoutes.GetGlobalSettings);
         _webserverManager.addStaticRoute(HttpMethod.PATCH, "/api/v1/web/settings/global", SettingsRoutes.UpdateGlobalSetting);
+        _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/settings/reload", SettingsRoutes.ReloadSettings);
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/settings/proxy", SettingsRoutes.GetProxySettings);
+        // Plugin-specific routes (e.g. example-web-plugin/settings, /data) are registered by the plugins themselves
 
         // Auth (admin invalidate user from panel)
         _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/auth/invalidate", AuthRoutes.InvalidateUser);
 
-        // Plugins (list, load, unload)
+        // Plugins (list, load, unload, init-settings; with-routes = grouped by plugin for sidebar)
+        _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/web/plugins/with-routes", PluginRoutes.GetPluginsWithRoutes);
         _webserverManager.addStaticRoute(HttpMethod.GET, "/api/v1/plugins/list", PluginRoutes.ListPlugins);
         _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/plugins/load", PluginRoutes.LoadPlugin);
         _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/plugins/unload", PluginRoutes.UnloadPlugin);
+        _webserverManager.addStaticRoute(HttpMethod.POST, "/api/v1/web/plugins/init-settings", PluginRoutes.InitSettings);
+
+        // Events init-settings
+        _webserverManager.addParameterRoute(HttpMethod.POST, "/api/v1/web/events/{name}/init-settings", EventRoutes.EventInitSettings);
     }
 
     private void RegisterProtectedPrefix()
@@ -111,25 +118,8 @@ public class WebApiPlugin : IPlugin
         _webserverManager.addProtectedPrefix("/api/v1/plugins/unload", new[] { API.Enums.UserRole.Admin });
         _webserverManager.addProtectedPrefix("/api/v1/web/auth/invalidate", new[] { API.Enums.UserRole.Admin });
         _webserverManager.addProtectedPrefix("/api/v1/web/sessions/broadcast", new[] { API.Enums.UserRole.Admin });
-    }
-
-    private void RegisterPluginMenu()
-    {
-        _routes.Add(new WebserverPluginRoute
-        {
-            Title = "Web API",
-            Path = "/api/v1/web",
-            ShowInMenu = true,
-            RequiredRole = API.Enums.UserRole.Authenticated
-        });
-        _routes.Add(new WebserverPluginRoute
-        {
-            Title = "Events",
-            Path = "/dashboard/events",
-            ShowInMenu = true,
-            RequiredRole = API.Enums.UserRole.Authenticated
-        });
-        _webserverManager!.RegisterPlugin(this, _routes);
+        _webserverManager.addProtectedPrefix("/api/v1/web/settings/reload", new[] { API.Enums.UserRole.Admin });
+        _webserverManager.addProtectedPrefix("/api/v1/web/plugins/init-settings", new[] { API.Enums.UserRole.Admin });
     }
 
     public void Dispose() { }

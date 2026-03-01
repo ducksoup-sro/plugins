@@ -2,6 +2,8 @@ using API.Database.Context;
 using API.Database.DuckSoup;
 using API.Event;
 using API.ServiceFactory;
+using API.Webserver;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Quartz;
 using WatsonWebserver.Core;
@@ -39,6 +41,49 @@ public static class EventRoutes
             // ignore DB errors (e.g. connection not configured)
         }
         return cronsByEvent;
+    }
+
+    /// <summary>Returns loaded events that have menu routes (for dashboard sidebar).</summary>
+    public static async Task GetEventsWithRoutes(HttpContextBase ctx)
+    {
+        ctx.Response.ContentType = "application/json";
+        if (!WebApiHelpers.TryRateLimit(ctx)) { await ctx.Response.Send("{\"error\":\"Too many requests\"}"); return; }
+        try
+        {
+            if (ctx.Metadata is not object)
+            {
+                ctx.Response.StatusCode = 401;
+                await ctx.Response.Send("{\"error\":\"Unauthorized\"}");
+                return;
+            }
+            var webserverManager = ServiceFactory.Load<IWebserverManager>(typeof(IWebserverManager));
+            if (webserverManager == null)
+            {
+                ctx.Response.StatusCode = 500;
+                await ctx.Response.Send("{\"error\":\"WebserverManager not available\"}");
+                return;
+            }
+            var events = new List<object>();
+            foreach (var (evt, routes) in webserverManager.GetRegisteredEvents())
+            {
+                if (routes == null || routes.Count == 0) continue;
+                var routeList = new List<object>();
+                foreach (var r in routes)
+                {
+                    if (!r.ShowInMenu) continue;
+                    routeList.Add(new { title = r.Title ?? "", path = r.Path ?? "" });
+                }
+                if (routeList.Count > 0)
+                    events.Add(new { name = evt.Name, routes = routeList });
+            }
+            ctx.Response.StatusCode = 200;
+            await ctx.Response.Send(JsonConvert.SerializeObject(new { events }));
+        }
+        catch (Exception ex)
+        {
+            ctx.Response.StatusCode = 500;
+            await ctx.Response.Send(JsonConvert.SerializeObject(new { error = ex.Message }));
+        }
     }
 
     public static async Task ListEvents(HttpContextBase ctx)
@@ -420,6 +465,46 @@ public static class EventRoutes
         }
     }
 
+    /// <summary>Calls InitSettings() on the event. Admin only.</summary>
+    public static async Task EventInitSettings(HttpContextBase ctx)
+    {
+        ctx.Response.ContentType = "application/json";
+        if (!WebApiHelpers.TryRateLimit(ctx)) { await ctx.Response.Send("{\"error\":\"Too many requests\"}"); return; }
+        if (!WebApiHelpers.RequireAdmin(ctx)) { ctx.Response.StatusCode = 403; await ctx.Response.Send("{\"error\":\"Admin role required\"}"); return; }
+        try
+        {
+            var name = ctx.Request.Url.Parameters["name"]?.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                ctx.Response.StatusCode = 400;
+                await ctx.Response.Send("{\"error\":\"Missing name parameter\"}");
+                return;
+            }
+            var eventManager = ServiceFactory.Load<IEventManager>(typeof(IEventManager));
+            if (eventManager == null)
+            {
+                ctx.Response.StatusCode = 500;
+                await ctx.Response.Send("{\"error\":\"EventManager not available\"}");
+                return;
+            }
+            var ok = eventManager.TriggerInitSettings(name);
+            if (!ok)
+            {
+                ctx.Response.StatusCode = 404;
+                await ctx.Response.Send(JsonConvert.SerializeObject(new { error = "Event not found or InitSettings failed" }));
+                return;
+            }
+            AuditLog.Log("Event.InitSettings", name, WebApiHelpers.GetUsername(ctx));
+            ctx.Response.StatusCode = 200;
+            await ctx.Response.Send(JsonConvert.SerializeObject(new { status = "ok", name }));
+        }
+        catch (Exception ex)
+        {
+            ctx.Response.StatusCode = 500;
+            await ctx.Response.Send(JsonConvert.SerializeObject(new { error = ex.Message }));
+        }
+    }
+
     private class EventNameRequest
     {
         public string? name { get; set; }
@@ -436,4 +521,5 @@ public static class EventRoutes
         public string? crontime { get; set; }
         public string? comment { get; set; }
     }
+
 }
