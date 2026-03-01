@@ -11,12 +11,9 @@
       <PackageReference Include="DuckSoup.API" Version="2.3.3-RELEASE" />
       <PackageReference Include="DuckSoup.Database" Version="2.3.0-RELEASE" />
       <PackageReference Include="DuckSoup.PacketLibrary" Version="2.2.2-RELEASE" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0-preview.6.25358.103" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="Watson" Version="6.3.10" />
     </ItemGroup>
-
-    <ItemGroup>
-      <None Update="plugin.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
+    
 </Project>

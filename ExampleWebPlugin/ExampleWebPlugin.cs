@@ -1,5 +1,6 @@
-﻿using API;
+using API;
 using API.Command;
+using API.Database;
 using API.Plugin;
 using API.Server;
 using API.ServiceFactory;
@@ -50,6 +51,7 @@ public class ExampleWebPlugin : IPlugin
         }
 
         RegisterPluginRoutes();
+        ExampleWebPluginRoutes.Register(_webserverManager);
     }
 
     public void OnServerStart(IFakeServer server)
@@ -68,8 +70,18 @@ public class ExampleWebPlugin : IPlugin
         
         _webserverManager.RegisterPlugin(this, routes);
     }
+
+    private const string MessageSettingKey = "Plugin.ExampleWebPlugin.Message";
+
+    /// <summary>Re-read config when the dashboard triggers "Reload settings".</summary>
+    public void InitSettings()
+    {
+        var message = DatabaseHelper.GetSettingOrDefault(MessageSettingKey, "Hello from ExampleWebPlugin");
+        Log.Information("ExampleWebPlugin: InitSettings — Message = {Message}", message);
+    }
+
     public void Dispose()
     {
-        _webserverManager.UnregisterPlugin(this);
+        _webserverManager?.UnregisterPlugin(this);
     }
 }

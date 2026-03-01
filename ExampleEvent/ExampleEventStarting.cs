@@ -15,7 +15,7 @@ public class ExampleEventStarting : IEventState
     public override async Task Start()
     {
         Log.Information("[ExampleEvent] Starting phase");
-        await Task.Delay(20000);
+        await Task.Delay(2000);
         _event.SetEventState(EventStateEnum.Running);
     }
 

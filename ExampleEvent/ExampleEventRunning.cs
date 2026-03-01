@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using API.Database;
 using API.Event;
 using Serilog;
 
@@ -5,6 +7,7 @@ namespace ExampleEvent;
 
 public class ExampleEventRunning : IEventState
 {
+    private const string MessageKey = "Event.ExampleEvent.Message";
     private readonly IEvent _event;
 
     public ExampleEventRunning(IEvent iEvent) : base(iEvent)
@@ -14,8 +17,9 @@ public class ExampleEventRunning : IEventState
 
     public override async Task Start()
     {
-        Log.Information("[ExampleEvent] Running phase");
-        await Task.Delay(30000);
+        var message = DatabaseHelper.GetSettingOrDefault(MessageKey, "");
+        Log.Information("[ExampleEvent] Running phase – Message: {Message}", string.IsNullOrEmpty(message) ? "(none)" : message);
+        await Task.Delay(3000);
         _event.SetEventState(EventStateEnum.Ending);
     }
 

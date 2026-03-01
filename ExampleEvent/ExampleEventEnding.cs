@@ -12,7 +12,7 @@ public class ExampleEventEnding : IEventState
     public override async Task Start()
     {
         Log.Information("[ExampleEvent] Ending phase");
-        await Task.Delay(10000);
+        await Task.Delay(1000);
     }
 
     public override Task Stop()
