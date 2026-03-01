@@ -8,8 +8,7 @@
 
     <ItemGroup>
       <!-- Prefer local API when building from repo (plugins + ducksoup side by side) -->
-      <ProjectReference Include="..\..\ducksoup\API\API.csproj" Condition="Exists('..\..\ducksoup\API\API.csproj')" />
-      <PackageReference Include="DuckSoup.API" Version="2.3.3-RELEASE" Condition="!Exists('..\..\ducksoup\API\API.csproj')" />
+      <PackageReference Include="DuckSoup.API" Version="2.4.0-RELEASE" />
       <PackageReference Include="DuckSoup.Database" Version="2.3.0-RELEASE" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0-preview.6.25358.103" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

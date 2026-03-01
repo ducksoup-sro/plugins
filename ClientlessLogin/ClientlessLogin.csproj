@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="DuckSoup.API" Version="2.3.3-RELEASE" />
+      <PackageReference Include="DuckSoup.API" Version="2.4.0-RELEASE" />
       <PackageReference Include="DuckSoup.Database" Version="2.3.0-RELEASE" />
       <PackageReference Include="DuckSoup.PacketLibrary" Version="2.2.2-RELEASE" />
     </ItemGroup>
